@@ -5,7 +5,7 @@ const API = (() => {
 
   // ▼ Cloudflare Workers をデプロイしたら、下の '' にURLを貼り付ける
   // 例: 'https://chai-api.yourname.workers.dev'
-  const HARDCODED_URL = '';
+  const HARDCODED_URL = 'https://chai-api.yosuke-kiyoka.workers.dev';
 
   const WORKER_URL = HARDCODED_URL || localStorage.getItem('chai_worker_url') || '';
 
