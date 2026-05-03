@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<title>チャイの旅日記</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="game-wrapper">
+
+  <!-- ===== メインキャンバス ===== -->
+  <canvas id="game-canvas" width="640" height="480"></canvas>
+
+  <!-- ===== ステータスバー ===== -->
+  <div id="status-bar">
+    <div class="status-item">
+      <span class="status-label">チッタ</span>
+      <div class="status-bar-fill"><div class="fill fill-chitta" style="width:50%"></div></div>
+    </div>
+    <div class="status-item">
+      <span class="status-label">プラーナ</span>
+      <div class="status-bar-fill"><div class="fill fill-prana" style="width:100%"></div></div>
+    </div>
+    <div class="status-item">
+      <span class="status-label">ヴィヴェーカ</span>
+      <div class="status-bar-fill"><div class="fill fill-viveka" style="width:0%"></div></div>
+    </div>
+    <span id="personality-badge" style="display:none;font-size:11px;color:rgba(212,168,75,0.6);letter-spacing:1px;"></span>
+    <span id="location-name">ゴーカルナ</span>
+    <button id="menu-btn" onclick="showMenuOverlay()">メニュー</button>
+  </div>
+
+  <!-- ===== 通知 ===== -->
+  <div id="notification"></div>
+
+  <!-- ===== フェードオーバーレイ ===== -->
+  <div id="transition-overlay"></div>
+
+  <!-- ===== 夢のシーン / ロケーション紹介 ===== -->
+  <div id="dream-overlay" class="overlay">
+    <div id="dream-bg"></div>
+    <div id="dream-content">
+      <div id="dream-scene-title">— 夢のはじまり —</div>
+      <div id="dream-text"></div>
+      <div id="dream-choices"></div>
+    </div>
+  </div>
+
+  <!-- ===== ダイアログボックス ===== -->
+  <div id="dialogue-overlay">
+    <div id="dialogue-box">
+      <div id="dialogue-speaker"></div>
+      <div id="dialogue-text"></div>
+      <div id="dialogue-choices"></div>
+      <div id="dialogue-continue">▼</div>
+    </div>
+  </div>
+
+  <!-- ===== フィールドイベント ===== -->
+  <div id="field-event-overlay" class="overlay">
+    <div id="field-event-content">
+      <div id="field-event-scene"></div>
+      <div id="field-event-text"></div>
+      <div id="field-event-result"></div>
+      <div id="field-event-choices"></div>
+      <button id="field-event-next">つぎへ ▶</button>
+    </div>
+  </div>
+
+  <!-- ===== チャイを作る ===== -->
+  <div id="chai-overlay" class="overlay">
+    <div id="chai-content"></div>
+  </div>
+
+  <!-- ===== メニュー / インベントリ ===== -->
+  <div id="menu-overlay" class="overlay"></div>
+
+  <!-- ===== モバイル Dパッド ===== -->
+  <div id="dpad">
+    <div id="dpad-up"       class="dpad-btn">▲</div>
+    <div id="dpad-left"     class="dpad-btn">◀</div>
+    <div id="dpad-right"    class="dpad-btn">▶</div>
+    <div id="dpad-down"     class="dpad-btn">▼</div>
+    <div id="dpad-interact" class="dpad-btn">話</div>
+  </div>
+
+  <!-- ===== エンディング ===== -->
+  <div id="ending-overlay" class="overlay">
+    <div id="ending-bg"></div>
+    <div id="ending-content">
+      <div id="ending-location"></div>
+      <div id="ending-text"></div>
+      <div id="ending-title-reveal">チャイの旅日記</div>
+      <button id="ending-to-title" onclick="location.href='index.html'">タイトルへ</button>
+    </div>
+  </div>
+
+</div><!-- /game-wrapper -->
+
+<!-- ===== スクリプト読み込み ===== -->
+<script src="js/story.js?v=134"></script>
+<script src="js/map.js?v=134"></script>
+<script src="js/api.js?v=134"></script>
+<script src="js/save.js?v=134"></script>
+<script src="js/npc.js?v=134"></script>
+<script src="js/audio.js?v=134"></script>
+<script src="js/main.js?v=134"></script>
+
+<!-- ===== 夢のシーン用スター ===== -->
+<script>
+(function() {
+  const dreamBg = document.getElementById('dream-bg');
+  for (let i = 0; i < 60; i++) {
+    const s = document.createElement('div');
+    const size = Math.random() * 2 + 0.5;
+    s.style.cssText = `position:absolute;border-radius:50%;background:white;width:${size}px;height:${size}px;top:${Math.random()*100}%;left:${Math.random()*100}%;opacity:${0.2+Math.random()*0.6};`;
+    dreamBg.appendChild(s);
+  }
+})();
+</script>
+
+</body>
+</html>
